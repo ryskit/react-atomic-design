@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { UserContext } from "../../providers/UserProvider";
+import { userState } from "../../store/userState";
 import { SecondaryButton } from "../atoms/button/SecondaryButton";
 import { SearchInput } from "../molecules/Searchinput";
 import { UserCard } from "../organisms/user/UserCard";
@@ -20,7 +22,8 @@ const users = [...Array(10).keys()].map((val) => {
 });
 
 export const Users = () => {
-  const { userInfo, setUserInfo } = useContext(UserContext);
+  // const { userInfo, setUserInfo } = useContext(UserContext);
+  const [userInfo, setUserInfo] = useRecoilState(userState);
   const onClickSwitch = () => setUserInfo({ isAdmin: userInfo ? !userInfo.isAdmin : true })
   return (
     <SContainer>
